@@ -4,6 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
+import { calculateReadTime } from "@/utils/calculateReadTime";
+
 import { ProgressBarLink } from "../ProgressBar";
 
 interface PostCardProps {
@@ -20,8 +22,7 @@ interface PostCardProps {
 export function PostCard({ id, title, body, author, imageUrl }: PostCardProps) {
 	const t = useTranslations("post");
 
-	const wordCount = body.trim().split(/\s+/).length;
-	const readTime = Math.max(1, Math.ceil(wordCount / 200));
+	const readTime = calculateReadTime(body);
 
 	return (
 		<motion.div

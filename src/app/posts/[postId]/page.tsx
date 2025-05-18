@@ -5,6 +5,7 @@ import { Post } from "@/@types/post";
 import { User } from "@/@types/user";
 import { Comment } from "@/@types/comment";
 import { ProgressBarLink } from "@/components/ProgressBar";
+import { calculateReadTime } from "@/utils/calculateReadTime";
 
 export default async function PostPage({
 	params,
@@ -21,8 +22,10 @@ export default async function PostPage({
 		api<Array<Comment>>(`/posts/${post.id}/comments`),
 	]);
 
+	const readTime = calculateReadTime(post.body);
+
 	return (
-		<main className='mx-auto max-w-3xl px-4 py-10'>
+		<main className='mx-auto max-w-6xl px-4 py-10'>
 			<article>
 				<h1 className='mb-2 text-3xl font-bold text-neutral-900 dark:text-neutral-100'>
 					{post.title}
@@ -36,7 +39,10 @@ export default async function PostPage({
 					>
 						{user.name}
 					</ProgressBarLink>{" "}
-					({user.email})
+					({user.email}) •{" "}
+					<span className='whitespace-nowrap'>
+						{t("readTime", { minutes: readTime })}
+					</span>
 				</p>
 
 				<div className='mb-10 space-y-4 leading-relaxed whitespace-pre-line text-neutral-900 dark:text-neutral-200'>
