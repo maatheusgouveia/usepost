@@ -1,7 +1,7 @@
 const BASE_URL =
 	process.env.NEXT_PUBLIC_API_URL || "https://jsonplaceholder.typicode.com";
 
-export async function apiFetch<T>(
+export async function api<T>(
 	path: string,
 	options: RequestInit = {},
 	config: { revalidate?: number; noCache?: boolean } = {}
