@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import { ProgressBarLink } from "@/components/ProgressBar";
 
 interface Post {
 	id: number;
@@ -22,14 +22,12 @@ interface Comment {
 	body: string;
 }
 
-interface PostPageProps {
-	params: {
-		postId: string;
-	};
-}
-
-export default async function PostPage({ params }: PostPageProps) {
-	const { postId } = params;
+export default async function PostPage({
+	params,
+}: {
+	params: Promise<{ postId: string }>;
+}) {
+	const { postId } = await params;
 
 	const postRes = await fetch(
 		`https://jsonplaceholder.typicode.com/posts/${postId}`
@@ -54,12 +52,12 @@ export default async function PostPage({ params }: PostPageProps) {
 
 				<p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
 					Escrito por{" "}
-					<Link
+					<ProgressBarLink
 						href={`/users/${user.id}`}
 						className="font-medium text-blue-600 hover:underline dark:text-blue-400"
 					>
 						{user.name}
-					</Link>{" "}
+					</ProgressBarLink>{" "}
 					({user.email})
 				</p>
 
