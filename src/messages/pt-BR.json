@@ -11,7 +11,9 @@
 	},
 	"post": {
 		"writtenBy": "Escrito por",
-		"commentsTitle": "Comentários"
+		"commentsTitle": "Comentários",
+		"byAuthor": "Por {name}",
+		"readTime": "{minutes} min de leitura"
 	},
 	"header": {
 		"home": "Início",

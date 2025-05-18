@@ -11,7 +11,9 @@
 	},
 	"post": {
 		"writtenBy": "Written by",
-		"commentsTitle": "Comments"
+		"commentsTitle": "Comments",
+		"byAuthor": "By {name}",
+		"readTime": "{minutes} min read"
 	},
 	"header": {
 		"home": "Home",
