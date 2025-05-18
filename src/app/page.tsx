@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import { Post } from "@/@types/post";
 import { api } from "@/services/api";
 import { ProgressBarLink } from "@/components/ProgressBar";
@@ -5,10 +7,12 @@ import { ProgressBarLink } from "@/components/ProgressBar";
 export default async function Home() {
 	const posts = await api<Post[]>("/posts", { method: "GET" });
 
+	const t = await getTranslations("home");
+
 	return (
 		<main className="max-w-6xl mx-auto px-4 py-10">
 			<h1 className="text-4xl font-bold mb-8 text-center">
-				Últimos Posts
+				{t("title")}
 			</h1>
 
 			<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

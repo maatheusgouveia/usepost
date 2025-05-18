@@ -4,7 +4,7 @@ import { getLocale, getMessages, getTimeZone } from "next-intl/server";
 
 import { Providers } from "./providers";
 
-import "./globals.scss";
+import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer/Footer";
 

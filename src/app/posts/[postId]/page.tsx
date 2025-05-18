@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 
 import { Post } from "@/@types/post";
 import { User } from "@/@types/user";
@@ -11,6 +12,7 @@ export default async function PostPage({
 	params: Promise<{ postId: string }>;
 }) {
 	const { postId } = await params;
+	const t = await getTranslations("post");
 
 	const postRes = await fetch(
 		`https://jsonplaceholder.typicode.com/posts/${postId}`
@@ -34,7 +36,7 @@ export default async function PostPage({
 				</h1>
 
 				<p className="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
-					Escrito por{" "}
+					{t("writtenBy")}{" "}
 					<ProgressBarLink
 						href={`/users/${user.id}`}
 						className="font-medium text-blue-600 hover:underline dark:text-blue-400"
@@ -51,7 +53,7 @@ export default async function PostPage({
 
 			<section>
 				<h2 className="text-2xl font-semibold mb-4 text-neutral-900 dark:text-neutral-100">
-					Comentários
+					{t("commentsTitle")}
 				</h2>
 
 				<ul className="space-y-4">

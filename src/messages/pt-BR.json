@@ -1,1 +1,25 @@
-{}
+{
+	"home": {
+		"title": "Últimos Posts"
+	},
+	"user": {
+		"email": "Email",
+		"username": "Usuário",
+		"phone": "Telefone",
+		"website": "Website",
+		"postsBy": "Posts de {name}"
+	},
+	"post": {
+		"writtenBy": "Escrito por",
+		"commentsTitle": "Comentários"
+	},
+	"header": {
+		"home": "Início",
+		"about": "Sobre"
+	},
+	"footer": {
+		"rights": "Todos os direitos reservados.",
+		"about": "Sobre",
+		"contact": "Contato"
+	}
+}

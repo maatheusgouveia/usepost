@@ -1,6 +1,7 @@
 import { Post } from "@/@types/post";
 import { User } from "@/@types/user";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 
 export default async function UserPage({
 	params,
@@ -8,6 +9,7 @@ export default async function UserPage({
 	params: Promise<{ userId: string }>;
 }) {
 	const { userId } = await params;
+	const t = await getTranslations("user");
 
 	const userRes = await fetch(
 		`https://jsonplaceholder.typicode.com/users/${userId}`
@@ -27,7 +29,8 @@ export default async function UserPage({
 					{user.name}
 				</h1>
 				<p className="text-sm text-neutral-600 dark:text-neutral-400">
-					Usuário: <strong>{user.username}</strong> | Email:{" "}
+					{t("username")}: <strong>{user.username}</strong> |{" "}
+					{t("email")}:{" "}
 					<a
 						href={`mailto:${user.email}`}
 						className="text-blue-600 dark:text-blue-400 hover:underline"
@@ -36,7 +39,7 @@ export default async function UserPage({
 					</a>
 				</p>
 				<p className="text-sm text-neutral-600 dark:text-neutral-400">
-					Telefone: {user.phone} | Website:{" "}
+					{t("phone")}: {user.phone} | {t("website")}:{" "}
 					<a
 						href={`https://${user.website}`}
 						target="_blank"
@@ -50,7 +53,7 @@ export default async function UserPage({
 
 			<section>
 				<h2 className="text-2xl font-semibold mb-6 text-neutral-900 dark:text-neutral-100">
-					Posts de {user.name}
+					{t("postsBy", { name: user.name })}
 				</h2>
 
 				<div className="grid gap-6 sm:grid-cols-2">
