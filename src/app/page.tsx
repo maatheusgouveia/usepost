@@ -1,12 +1,6 @@
-import { ProgressBarLink } from "@/components/ProgressBar";
+import { Post } from "@/@types/post";
 import { api } from "@/services/api";
-
-interface Post {
-	userId: number;
-	id: number;
-	title: string;
-	body: string;
-}
+import { ProgressBarLink } from "@/components/ProgressBar";
 
 export default async function Home() {
 	const posts = await api<Post[]>("/posts", { method: "GET" });

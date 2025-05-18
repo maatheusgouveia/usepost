@@ -1,26 +1,9 @@
 import { notFound } from "next/navigation";
+
+import { Post } from "@/@types/post";
+import { User } from "@/@types/user";
+import { Comment } from "@/@types/comment";
 import { ProgressBarLink } from "@/components/ProgressBar";
-
-interface Post {
-	id: number;
-	userId: number;
-	title: string;
-	body: string;
-}
-
-interface User {
-	id: number;
-	name: string;
-	username: string;
-	email: string;
-}
-
-interface Comment {
-	id: number;
-	name: string;
-	email: string;
-	body: string;
-}
 
 export default async function PostPage({
 	params,
