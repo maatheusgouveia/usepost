@@ -18,7 +18,7 @@ export default async function UserPage({
 	const posts = await api<Array<Post>>(`/posts?userId=${userId}`);
 
 	return (
-		<main className='mx-auto max-w-4xl px-4 py-10'>
+		<main className='mx-auto max-w-6xl px-4 py-10'>
 			<header className='mb-10'>
 				<h1 className='text-3xl font-bold text-neutral-900 dark:text-neutral-100'>
 					{user.name}
@@ -51,7 +51,7 @@ export default async function UserPage({
 					{t("postsBy", { name: user.name })}
 				</h2>
 
-				<div className='grid gap-6 sm:grid-cols-2'>
+				<div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
 					{posts.map(post => (
 						<PostCard
 							key={post.id}
