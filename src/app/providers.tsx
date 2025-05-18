@@ -26,7 +26,7 @@ export function Providers({
 				messages={messages}
 				timeZone={timeZone}
 			>
-				<ProgressBar className="fixed top-0 h-1 rounded-r bg-primary">
+				<ProgressBar className="fixed top-0 h-1 rounded-r bg-blue-600">
 					<ToastProvider
 						toastProps={{ shouldShowTimeoutProgress: true }}
 						placement="top-right"

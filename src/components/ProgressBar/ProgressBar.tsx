@@ -71,7 +71,7 @@ export const ProgressBarLink = ({
 	return (
 		<Link
 			href={href}
-			onClick={e => {
+			onClick={(e) => {
 				e.preventDefault();
 				progress.start();
 
@@ -103,7 +103,6 @@ function useProgress() {
 
 	useInterval(
 		() => {
-			// If we start progress but the bar is currently complete, reset it first.
 			if (value.get() === 100) {
 				value.jump(0);
 			}
@@ -131,7 +130,7 @@ function useProgress() {
 			value.set(100);
 		}
 
-		return value.on("change", latest => {
+		return value.on("change", (latest) => {
 			if (latest === 100) {
 				setState("complete");
 			}
@@ -147,7 +146,7 @@ function useProgress() {
 	}
 
 	function done() {
-		setState(state =>
+		setState((state) =>
 			state === "initial" || state === "in-progress"
 				? "completing"
 				: state
