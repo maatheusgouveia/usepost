@@ -1,7 +1,9 @@
+import { getTranslations } from "next-intl/server";
+
+import { api } from "@/services/api";
 import { Post } from "@/@types/post";
 import { User } from "@/@types/user";
-import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
+import { PostCard } from "@/components/PostCard";
 
 export default async function UserPage({
 	params,
@@ -11,40 +13,33 @@ export default async function UserPage({
 	const { userId } = await params;
 	const t = await getTranslations("user");
 
-	const userRes = await fetch(
-		`https://jsonplaceholder.typicode.com/users/${userId}`
-	);
-	if (!userRes.ok) return notFound();
-	const user: User = await userRes.json();
+	const user = await api<User>(`/users/${userId}`);
 
-	const postsRes = await fetch(
-		`https://jsonplaceholder.typicode.com/posts?userId=${userId}`
-	);
-	const posts: Post[] = await postsRes.json();
+	const posts = await api<Array<Post>>(`/posts?userId=${userId}`);
 
 	return (
-		<main className="max-w-4xl mx-auto px-4 py-10">
-			<header className="mb-10">
-				<h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
+		<main className='mx-auto max-w-4xl px-4 py-10'>
+			<header className='mb-10'>
+				<h1 className='text-3xl font-bold text-neutral-900 dark:text-neutral-100'>
 					{user.name}
 				</h1>
-				<p className="text-sm text-neutral-600 dark:text-neutral-400">
+				<p className='text-sm text-neutral-600 dark:text-neutral-400'>
 					{t("username")}: <strong>{user.username}</strong> |{" "}
 					{t("email")}:{" "}
 					<a
 						href={`mailto:${user.email}`}
-						className="text-blue-600 dark:text-blue-400 hover:underline"
+						className='text-blue-600 hover:underline dark:text-blue-400'
 					>
 						{user.email}
 					</a>
 				</p>
-				<p className="text-sm text-neutral-600 dark:text-neutral-400">
+				<p className='text-sm text-neutral-600 dark:text-neutral-400'>
 					{t("phone")}: {user.phone} | {t("website")}:{" "}
 					<a
 						href={`https://${user.website}`}
-						target="_blank"
-						className="text-blue-600 dark:text-blue-400 hover:underline"
-						rel="noreferrer"
+						target='_blank'
+						className='text-blue-600 hover:underline dark:text-blue-400'
+						rel='noreferrer'
 					>
 						{user.website}
 					</a>
@@ -52,24 +47,20 @@ export default async function UserPage({
 			</header>
 
 			<section>
-				<h2 className="text-2xl font-semibold mb-6 text-neutral-900 dark:text-neutral-100">
+				<h2 className='mb-6 text-2xl font-semibold text-neutral-900 dark:text-neutral-100'>
 					{t("postsBy", { name: user.name })}
 				</h2>
 
-				<div className="grid gap-6 sm:grid-cols-2">
-					{posts.map((post) => (
-						<a
+				<div className='grid gap-6 sm:grid-cols-2'>
+					{posts.map(post => (
+						<PostCard
 							key={post.id}
-							href={`/posts/${post.id}`}
-							className="block bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-5 hover:shadow transition"
-						>
-							<h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-2">
-								{post.title}
-							</h3>
-							<p className="text-neutral-600 dark:text-neutral-400 line-clamp-3">
-								{post.body}
-							</p>
-						</a>
+							id={post.id}
+							title={post.title}
+							body={post.body}
+							author={{ id: user.id, name: user.name }}
+							imageUrl={`https://picsum.photos/id/${post.id % 100}/600/400.jpg`}
+						/>
 					))}
 				</div>
 			</section>
