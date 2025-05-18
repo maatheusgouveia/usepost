@@ -21,7 +21,7 @@ export default async function Home() {
 				{posts.map((post) => (
 					<ProgressBarLink
 						key={post.id}
-						href={`/${post.id}`}
+						href={`/posts/${post.id}`}
 						className="bg-white dark:bg-neutral-900 rounded-2xl shadow-md border border-neutral-200 dark:border-neutral-800 p-6 transition hover:scale-[1.02] hover:shadow-lg"
 					>
 						<h2 className="text-xl font-semibold mb-2 text-neutral-800 dark:text-neutral-100">

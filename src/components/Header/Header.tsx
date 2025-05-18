@@ -19,7 +19,7 @@ export function Header() {
 						Início
 					</ProgressBarLink>
 					<ProgressBarLink
-						href="/sobre"
+						href="/about"
 						className="text-neutral-600 dark:text-neutral-300 hover:text-blue-600 transition"
 					>
 						Sobre

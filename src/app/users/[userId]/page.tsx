@@ -17,13 +17,13 @@ interface Post {
 }
 
 interface UserPageProps {
-	params: Promise<{
+	params: {
 		userId: string;
-	}>;
+	};
 }
 
 export default async function UserPage({ params }: UserPageProps) {
-	const { userId } = await params;
+	const { userId } = params;
 
 	const userRes = await fetch(
 		`https://jsonplaceholder.typicode.com/users/${userId}`
