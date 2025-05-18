@@ -28,6 +28,7 @@ export function PostCard({ id, title, body, author, imageUrl }: PostCardProps) {
 			initial={{ opacity: 0, y: 10 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.3, delay: id * 0.03 }}
+			className='h-full'
 		>
 			<ProgressBarLink
 				href={`/posts/${id}`}
@@ -43,7 +44,7 @@ export function PostCard({ id, title, body, author, imageUrl }: PostCardProps) {
 					placeholder='empty'
 				/>
 
-				<div className='flex h-full flex-col justify-between p-6'>
+				<div className='flex h-[256px] flex-col justify-between p-6'>
 					<div>
 						<h2 className='mb-2 text-xl font-semibold text-neutral-800 dark:text-neutral-100'>
 							{title}
@@ -56,7 +57,9 @@ export function PostCard({ id, title, body, author, imageUrl }: PostCardProps) {
 
 					<div className='mt-auto flex items-center justify-between pt-2 text-sm text-neutral-500 dark:text-neutral-400'>
 						<span>{t("byAuthor", { name: author.name })}</span>
-						<span>{t("readTime", { minutes: readTime })}</span>
+						<span className='whitespace-nowrap'>
+							{t("readTime", { minutes: readTime })}
+						</span>
 					</div>
 				</div>
 			</ProgressBarLink>
