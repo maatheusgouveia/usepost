@@ -23,5 +23,12 @@
 		"rights": "All rights reserved.",
 		"about": "About",
 		"contact": "Contact"
+	},
+	"about": {
+		"title": "About Me",
+		"paragraph1": "I'm a passionate developer with over 9 years of experience, having worked on high-impact projects across Brazil and Latin America.",
+		"paragraph2": "Throughout my journey, I've built robust solutions using React, TypeScript, and Node.js — contributing to fintechs, white-label platforms, and large-scale enterprises. I've worked as a Full Stack, Mobile, and currently as a Frontend Engineer, always focused on clean, performant, and accessible code.",
+		"paragraph3": "Collaborating with international teams has given me a global product mindset and strong multicultural communication skills in English and Spanish.",
+		"paragraph4": "Beyond work, I build personal projects like WebDevTools and maintain a blog where I share insights about career, software architecture, and technology. My goal is to keep growing, contributing to the community, and building experiences that matter."
 	}
 }
